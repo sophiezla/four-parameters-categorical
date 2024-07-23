@@ -35,6 +35,35 @@ ul.task-list li input[type="checkbox"] {
 <link href="analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="analysis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -69,7 +98,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-
+<span class="math display">\[\begin{aligned}
+\rho_{clinton} &amp;=&amp; \frac{e^{\beta_{0, clinton} + \beta_{1, clinton} male}}{1 + e^{\beta_{0, clinton} + \beta_{1, clinton} male}}\\
+\rho_{perot} &amp;=&amp; \frac{e^{\beta_{0, perot} + \beta_{1, perot} male}}{1 + e^{\beta_{0, perot} + \beta_{1, perot} male}}\\
+\rho_{bush}  &amp;=&amp; 1 - \rho_{clinton} - \rho_{perot}
+\end{aligned}\]</span>
+<p>We are using the data from the ANES, focusing on the election of 1992 to figure out the relationship between sex and the candidate voted for during that election. We have addressed the creation of the population table and the assumptions of stability and representativeness. From this arises the concern that the data is not representative as there is a bias/difference between people who do and don’t respond to the survey.</p>
 
 </main>
 <!-- /main column -->
